@@ -53,7 +53,7 @@ En este caso no necesitamos toda la web, solo cierta parte que nos interesa. Par
 soup = BeautifulSoup(contenido, "html.parser")
 ```
 
-Gracias a la librería BeautifulSoup podemos usar su función *find_all* que nos ayudara a encontrar y guardar en la variable *arreglo_elementos* todas las etiquetas `<a>` que contengan como class="" la ID **data-mountable-type** y su valor **episode.** (Esto para hacer la búsqueda más concreta)
+Gracias a la librería BeautifulSoup podemos usar su función *find_all* que nos ayudara a encontrar y guardar en la variable *arreglo_elementos* todas las etiquetas `<a>` que contengan como clase (en HTML class="") la ID **data-mountable-type** y su valor **episode.** (Esto para hacer la búsqueda más concreta)
 
 ```python
 arreglo_elementos = soup.find_all("a", {"data-mountable-type": "episode"})
