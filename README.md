@@ -4,8 +4,7 @@ Declaración de responsabilidad, LePravda Group & Azuzu Developers (nosotros en 
 la web la ha diseñado con Usted en mente, su apertura automática mediante un *web scraper* puede suponer un **incumplimiento de las condiciones de uso**. Estas acciones se vuelven especialmente relevantes cuando se accede a grandes volúmenes de información procedente de varias páginas al mismo tiempo o en sucesión rápida, de un modo en el que una persona nunca sería capaz de interactuar con la página. En ningún momento se está tomando datos sensibles,
 sí por algún motivo encontramos una brecha de seguridad o vemos que se pueda usar datos sensibles se le notificara inmediatamente al operador de la web.
 
-*Este proyecto está bajo desarrollo, cualquier error que se pueda genera puede contactarnos. *
-
+*Este proyecto está bajo desarrollo, cualquier error que se pueda genera puede contactarnos.*
 
 ### Instalación de librerías
 
@@ -65,7 +64,6 @@ Para el uso más cómodo de toda esta información requerimos que este en forma 
 arreglo_str = [str(i) for i in arreglo_elementos]
 ```
 
-
 ### **Detección de episodios sin ser lanzados**
 
 ---
@@ -100,7 +98,6 @@ if cadena in nuevo_episodio:
     notification.message = "El anime esta actualmente."
     notification.send()
 ```
-
 
 Expliquemos un poco el funcionamiento de la notificación. Para ello creamos una variable donde contendrán el método **Notify()**, ya con ello listo nos dará la posibilidad de usar varias funciones. La que vamos a usar son *.title* para el título de la notificación, *.message* para el mensaje en cuestión y ya por ultimo *.send()* para hacer efectivo la visualización.
 
