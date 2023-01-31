@@ -101,7 +101,7 @@ if cadena in nuevo_episodio:
 
 Expliquemos un poco el funcionamiento de la notificación. Para ello creamos una variable donde contendrán el método **Notify()**, ya con ello listo nos dará la posibilidad de usar varias funciones. La que vamos a usar son *.title* para el título de la notificación, *.message* para el mensaje en cuestión y ya por ultimo *.send()* para hacer efectivo la visualización.
 
-## Aclaraciones
+### Aclaraciones
 
 Por el momento solo se puede visualizar la notificación si se ejecuta el código en su IDLE de preferencia. Pero se está desarrollando para que sea una aplicación para la computadora y a futuro próximo una web.
 
@@ -110,3 +110,5 @@ Por el momento solo se puede visualizar la notificación si se ejecuta el códig
 azuzu0 - Head Project Developer
 
 Danox - Second Head Project Developer
+
+###### LePravda Group & Azuzu Developers.
