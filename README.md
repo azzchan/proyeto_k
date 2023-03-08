@@ -1,8 +1,7 @@
-# Anime Notifier
+# Proyecto K
 
-Declaración de responsabilidad, LePravda Group & Azuzu Developers (nosotros en adelante) tenemos conocimiento de los posibles problemas que esto pueda surgir en un futuro al Usuario (usted en adelante) si estos problemas dan como resultado la prohibición al servicio, Nosotros optaremos a suspender el desarrollo/publicación de este Proyecto. Puesto que el operador de
-la web la ha diseñado con Usted en mente, su apertura automática mediante un *web scraper* puede suponer un **incumplimiento de las condiciones de uso**. Estas acciones se vuelven especialmente relevantes cuando se accede a grandes volúmenes de información procedente de varias páginas al mismo tiempo o en sucesión rápida, de un modo en el que una persona nunca sería capaz de interactuar con la página. En ningún momento se está tomando datos sensibles,
-sí por algún motivo encontramos una brecha de seguridad o vemos que se pueda usar datos sensibles se le notificara inmediatamente al operador de la web.
+Declaración de responsabilidad, elif_gang (nosotros en adelante) es un grupo de desarrollo que crea herramientas usando como base el lenguaje de programación de Python. Teniendo lo anterior en cuenta tenemos pleno conocimiento de los posibles problemas que esto pueda surgir en un futuro al Usuario (usted en adelante) a la hora de usar ciertas formas, como,
+por ejemplo, manejo de datos, obtención de datos de otras web y demás. Si estos problemas dan como resultado la prohibición al servicio, quejas o demás inconformidades nosotros optaremos a suspender el desarrollo/publicación del Proyecto. Puesto que nuestra intención es de solo crear herramientas para hacer más amena la vida informática. Todo proyecto está diseñado con usted en mente.
 
 *Este proyecto está bajo desarrollo, cualquier error que se pueda genera puede contactarnos.*
 
@@ -10,22 +9,60 @@ sí por algún motivo encontramos una brecha de seguridad o vemos que se pueda u
 
 ---
 
-Para el correcto funcionamiento de esta herramienta se debe tener instalado en su máquina Python en su versión 3 además de las siguientes librerías:
+Para el correcto funcionamiento de esta herramienta se debe tener instalado en su máquina Python en su versión tres además de las siguientes librerías:
 
 * Notify
-* Parser
 * BeautifulSoup
-* Requests
 
 ```python
 pip install notify
-
-pip install parser
-
 pip install beautifulsoup
-
-pip install request
 ```
+
+### Changelog
+
+---
+
+v0
+
+* Se moldea la logia inicial.
+* Se añade el uso de BeautifulSoup para la obtención de datos de la web.
+* Se reacomoda y reescriben todas las variables.
+
+Versión 0.1
+
+* Se vuelve a moldear la logica, ya que se desviaba al objetivo.
+* Se añaden nuevas funcionalidades, tales, envio de notificaciones con Notify.
+* Se hace uso de Parser para analizar y procesar el codigo fuente en HTML a STR, para su facil manejo.
+
+v0.1.1
+
+* Se elimina el Parser ya que es un proceso demorado e inecesario.
+* Se añade más funcionalidades al envio de notificaciones.
+
+v1.0
+
+* Se reconstruye todo el código, ahora manejando metodos.
+* Como se elimino Paser, se hace una optención del codigo crudo HTML y se da uso de más funcionalidades de BeautifulSoup.
+* Se añaden los primeros metodos `get_latest_espisode` y `send_notificaction`.
+* Se crea un metodo llamado `main` que gestionara y llamara metodos necesarios para su correcto funcionamiento.
+* Se comienza a usar exepciones para mejorar la obtencion de errores y en consecuencia su arreglo.
+
+v1.1b
+
+* Se testea las funcionalidades y se añade otros metodos de prueba tales como `get_Name` y `get_restTime`.
+* Se importa la libreria `re`, ya que a la hora de obtener los atributos de `class` o `id` nos devulve una cadena con caracteres inecesarios.
+
+v1.1.1
+
+* Los metodos de prueba se mantienen. Ahora dandole más funcionalidades al metodo `send_notification`
+* Se añade un timer o loop (metodo `main_loop`) para que cada cinco (5) minutos este ejecutando el codigo.
+* Se implementa de manera experimental el uso como ejecutable.
+* Se añade un icono a las notificaciones.
+
+v1.1.2a
+
+* Para ser el codigo más legible para futuro se ramificara en varios archivos, esto para usar las lineas de codigo adecuadas para un solo metodo.
 
 ### Conexión y Obtención de información
 
@@ -34,72 +71,82 @@ pip install request
 Para obtener los datos necesarios requerimos de pedirle los datos a la web y lo usaremos usando web scraping, para ello almacenamos la URL que se va a utilizar:
 
 ```python
-html_crudo = "https://notify.moe/anime/fxRlqPDVR"
+url = "https://notify.moe/anime/fxRlqPDVR"
 ```
 
 *[https://notify.moe/anime/fxRlqPDVR](https://notify.moe/anime/fxRlqPDVR)* es una web que nos proporciona un indexado de todos los animes que están en transmisión. Además de indicarnos que episodio ya han sido lanzado.
 
-Luego de ello, pediremos una *requests* para obtener toda la información, de la misma manera guardamos toda la información en la variable *resultado* para luego obtener el *contenido* de la web a una forma que Python lo entienda con la ayuda de la función *.text* de la librería **Requests**.
+Esta variable esta situada dentro del metodo `main` ya que este sera el que llame y gestione los demás metodos necesarios.
+
+Para las peticiones (requests) usamos el metodo `get_latest_episode` este contendra las llamadas necesarias para obtener toda la información, de la misma hacemos uso de BeautifulSoup para el tratamiento del codigo HTML.
 
 ```python
-resultado = requests.get(html_crudo)
-contenido = resultado.text
+response = requests.get(url)
+    soup = BeautifulSoup(response.text, "html.parser")
 ```
 
 En este caso no necesitamos toda la web, solo cierta parte que nos interesa. Para ello pasamos ese contenido por nuestra librería **BeautifulSoup**, para saber más puedes ir a su [documentación](https://www.crummy.com/software/BeautifulSoup/bs4/doc/) oficial.
 
-```python
-soup = BeautifulSoup(contenido, "html.parser")
-```
-
-Gracias a la librería BeautifulSoup podemos usar su función *find_all* que nos ayudara a encontrar y guardar en la variable *arreglo_elementos* todas las etiquetas `<a>` que contengan como clase (en HTML class="") la ID **data-mountable-type** y su valor **episode.** (Esto para hacer la búsqueda más concreta)
+Gracias a la librería BeautifulSoup podemos usar su función `find_all` que nos ayudara a encontrar toda la información que queramos, actualemte este metodo solo requiere encontrar todas las etiquetas `<a>` que contengan `"data-mountable-type"` y su valor sea `"episode"`.
 
 ```python
-arreglo_elementos = soup.find_all("a", {"data-mountable-type": "episode"})
+episode_elements = soup.find_all("a", {"data-mountable-type": "episode"})
 ```
 
-Para el uso más cómodo de toda esta información requerimos que este en forma de STR. Para ello usamos una sencilla función.
+Anteriormente se usaba Perser para convertir esos elementos HTML a STR para un mejor uso, pero se entendio que no era necesario.
 
 ```python
 arreglo_str = [str(i) for i in arreglo_elementos]
 ```
 
+Lo que se hace es que se itera cada etiqueta `<a>` y de ellos tomamos sus valores de `"data-available"`. Si `"data-available"` es false (este false es de HTML y no de Python) cambiara el estado de la variable `latest_episode` y de igualmanera obtenemos el episodio, ya que solo obtenemos los valores true y se detendra si hay un false.
+
 ### **Detección de episodios sin ser lanzados**
 
 ---
 
-Para detectar cuales son los episodios que no han sido lanzados realizamos un ciclo buscando cada etiqueta `<a>` el estado *'data-available="false"'* esto con el fin de ir contando los episodios faltantes.
+Para detectar cuales son los episodios que no han sido lanzados realizamos un ciclo buscando cada etiqueta `<a>` el estado `"data-available = false"` esto con el fin de ir contando los episodios faltantes. A continuación se dara una condicional
+
+`if available == "true":` si es true colocaremos toda la sintaxis de HTML en `latest_episode` para su posterior tratamiento.
 
 ```python
-contador = 0
-string = 'data-available="false"'
-for elemento in arreglo_str:
-    if string in elemento:
-        True
-    else:
-        contador += 1
+    episode_count = 0
+    for episode in episode_elements:
+        available = episode.get("data-available")
+        episode_count += 1
+        if available == "true":
+            latest_episode = episode
+        else:
+            break  
 ```
 
-Con el contador obtendremos el siguiente capitulo que se lanzara. Así que guardamos e insertamos ese número para solo obtener esa etiqueta `<a>` de ese episodio en concreto.
+Con el contador obtendremos el siguiente capitulo que se lanzara. Así que guardamos y lo retornamos igual que `latest_episode`:
 
 ```python
-nuevo_episodio = arreglo_str[contador]
+return latest_episode, episode_count
 ```
 
-Para luego nuevamente buscando el nuevo estado de *data-available="true"' .* Ya que nos ayudara para detectar que se ha lanzado el nuevo episodio y proceder a notificarlo.
+Para luego usar estos dos retornos en el metodo `main` que llamara al resto de metodos.
 
-Para ello realizamos una sentencia para saber si ese estado ha cambiado, si es así se lanzara una notificación. Esta notificación está hecha con la librería **Notify**.
+Pero antes, debemos crear la notifiacion con los datos obtenidos que serian `latest_episode` y `episode_count` (numero del episodio) para ello creamos un metodo llamado  `send_notification` y necesitara de un `title` y `message`.
 
 ```python-repl
-cadena = 'data-available="true"'
-if cadena in nuevo_episodio:
+def send_notification(title, message):
+    icon_file = r"icon.ico"
     notification = Notify()
-    notification.title = "Anime"
-    notification.message = "El anime esta actualmente."
+    notification.title = title
+    notification.message = message
+    notification.icon = icon_file
     notification.send()
 ```
 
 Expliquemos un poco el funcionamiento de la notificación. Para ello creamos una variable donde contendrán el método **Notify()**, ya con ello listo nos dará la posibilidad de usar varias funciones. La que vamos a usar son *.title* para el título de la notificación, *.message* para el mensaje en cuestión y ya por ultimo *.send()* para hacer efectivo la visualización.
+
+Es de tener en cuenta que el metodo `get_latest_episode` necesita url, dada por el metodo `main` y asi mismo llama al metodo `send_notification` y le entrega `title` y `message` de los returns en `get_latest_episode`.
+
+Agregar que el metodo `get_Name` tiene la misma logica, qu `get_latest_episode` solo que este busca una etiqueta `<h1>` y obtiene el el nombre del anime a notificar para darcelo a `main` que gestionara todo despues.
+
+Con el metodo `get_restTime` usa la misma logica a cierto punto, ya que obtiene `"data-available"` para obtener la fecha de lanzamiento para luego calcular cuanto resta para el proximo episodio. Todo ello usando dos librerias `re` y `time`.
 
 ## Aclaraciones
 
@@ -107,6 +154,4 @@ Por el momento solo se puede visualizar la notificación si se ejecuta el códig
 
 #### Desarrolladores
 
-azuzu0 - Head Project Developer
-
-Danox - Second Head Project Developer
+elif_gang Developers Group
