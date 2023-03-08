@@ -1,7 +1,14 @@
 # Proyecto K
 
-Declaración de responsabilidad, elif_gang (nosotros en adelante) es un grupo de desarrollo que crea herramientas usando como base el lenguaje de programación de Python. Teniendo lo anterior en cuenta tenemos pleno conocimiento de los posibles problemas que esto pueda surgir en un futuro al Usuario (usted en adelante) a la hora de usar ciertas formas, como,
-por ejemplo, manejo de datos, obtención de datos de otras web y demás. Si estos problemas dan como resultado la prohibición al servicio, quejas o demás inconformidades nosotros optaremos a suspender el desarrollo/publicación del Proyecto. Puesto que nuestra intención es de solo crear herramientas para hacer más amena la vida informática. Todo proyecto está diseñado con usted en mente.
+HEAD
+
+
+===
+
+Declaración de responsabilidad, LePravda Group & elif_gang (nosotros en adelante) tenemos conocimiento de los posibles problemas que esto pueda surgir en un futuro al Usuario (usted en adelante) si estos problemas dan como resultado la prohibición al servicio, Nosotros optaremos a suspender el desarrollo/publicación de este Proyecto. Puesto que el operador de
+la web la ha diseñado con Usted en mente, su apertura automática mediante un *web scraper* puede suponer un **incumplimiento de las condiciones de uso**. Estas acciones se vuelven especialmente relevantes cuando se accede a grandes volúmenes de información procedente de varias páginas al mismo tiempo o en sucesión rápida, de un modo en el que una persona nunca sería capaz de interactuar con la página. En ningún momento se está tomando datos sensibles,
+sí por algún motivo encontramos una brecha de seguridad o vemos que se pueda usar datos sensibles se le notificara inmediatamente al operador de la web.
+
 
 *Este proyecto está bajo desarrollo, cualquier error que se pueda genera puede contactarnos.*
 
@@ -142,6 +149,7 @@ def send_notification(title, message):
 
 Expliquemos un poco el funcionamiento de la notificación. Para ello creamos una variable donde contendrán el método **Notify()**, ya con ello listo nos dará la posibilidad de usar varias funciones. La que vamos a usar son *.title* para el título de la notificación, *.message* para el mensaje en cuestión y ya por ultimo *.send()* para hacer efectivo la visualización.
 
+
 Es de tener en cuenta que el metodo `get_latest_episode` necesita url, dada por el metodo `main` y asi mismo llama al metodo `send_notification` y le entrega `title` y `message` de los returns en `get_latest_episode`.
 
 Agregar que el metodo `get_Name` tiene la misma logica, qu `get_latest_episode` solo que este busca una etiqueta `<h1>` y obtiene el el nombre del anime a notificar para darcelo a `main` que gestionara todo despues.
@@ -152,6 +160,6 @@ Con el metodo `get_restTime` usa la misma logica a cierto punto, ya que obtiene 
 
 Por el momento solo se puede visualizar la notificación si se ejecuta el código en su IDLE de preferencia. Pero se está desarrollando para que sea una aplicación para la computadora y a futuro próximo una web.
 
-#### Desarrolladores
 
 elif_gang Developers Group
+==========================
