@@ -2,7 +2,7 @@
 ![Banner](https://i.ibb.co/BZL0WFT/proyecto-k.png)
 
 # Proyecto K
-
+[![v1.1.2b](https://img.shields.io/badge/release-v1.1.2a-green)](https://github.com/azuzu0/proyeto_k/blob/main/log/v1.1.2b/README.md)
 Declaración de responsabilidad, LePravda Group & elif_gang (nosotros en adelante) tenemos conocimiento de los posibles problemas que esto pueda surgir en un futuro al Usuario (usted en adelante) si estos problemas dan como resultado la prohibición temporal o permanente del servicio. Nosotros optaremos a suspender el desarrollo/publicación de este Proyecto. Puesto que el operador de la web la ha diseñado con Usted en mente, su apertura automática mediante un *web scraper*  puede suponer un **incumplimiento de las condiciones de uso**. Estas acciones se vuelven especialmente relevantes cuando se accede a grandes volúmenes de información procedente de varias páginas al mismo tiempo o en sucesión rápida, de un modo en el que una persona nunca sería capaz de interactuar con la página. En ningún momento se está tomando datos sensibles,
 sí por algún motivo encontramos una brecha de seguridad o detectanos que se pueda usar datos sensibles se le notificara inmediatamente al operador de la web.
 
