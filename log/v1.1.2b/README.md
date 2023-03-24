@@ -1,6 +1,6 @@
 ## Changelog
 
-v1.1.2a
+v1.1.2b
 
 * Se divide la logica del metodo `get_latest_espisode` ahora en vez de devolver el estado y el episodio, los hace en dos metodos independientes que son, `get_state_episode` y `get_Episode` respectivamente.
 * Se mejora la logica del metodo `get_restTime`.
