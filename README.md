@@ -1,5 +1,5 @@
 
-![Logo](https://i.ibb.co/Cb4XsBt/proyecto-k.jpg)
+![Banner](https://i.ibb.co/BZL0WFT/proyecto-k.png)
 
 # Proyecto K
 
