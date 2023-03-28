@@ -29,6 +29,7 @@ def get_Name(link):
     return anime_name
 
 def get_Posicion(list, inputAnime):
+    position = 0
     for i in range(len(list)):
         if inputAnime.lower() in list[i].lower():
             position = i+1
