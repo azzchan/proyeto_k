@@ -3,19 +3,22 @@ from main import get_ListName, get_Posicion, get_AnimeLink, get_Name, get_Episod
 app = Flask(__name__)
 
 def gestion(anine_name):
-    url_base = "https://notify.moe/explore" 
+    url_base = "https://notify.moe/explore"
     Listname = get_ListName(url_base)
-    position = get_Posicion(Listname,anine_name)
-    links = get_AnimeLink(url_base,position)
-    anime_name = get_Name(links)
-    episode_number = get_Episode(links)
-    state = get_state_episode(links)
-    time = get_restTime(links, episode_number)
-    if state == "false":
-        mensaje = f"Episode {episode_number+1} of {anime_name} is avaiable.{time}"
-    else:
-        mensaje =  f"Episode {episode_number+1} of {anime_name} it`s not avaiable, it`s going to air in {time} days."
-    return mensaje
+    try:
+        position = get_Posicion(Listname,anine_name)
+        links = get_AnimeLink(url_base,position)
+        anime_name = get_Name(links)
+        episode_number = get_Episode(links)
+        state = get_state_episode(links)
+        time = get_restTime(links, episode_number)
+        if state == "false":
+            mensaje = f"Episode {episode_number+1} of {anime_name} is avaiable.{time}"
+        else:
+            mensaje =  f"Episode {episode_number+1} of {anime_name} it`s not avaiable, it`s going to air in {time} days."
+        return mensaje
+    except:
+        return "Hubo un inesperado"
 
 @app.route('/', methods=['GET', 'POST'])
 def index():
