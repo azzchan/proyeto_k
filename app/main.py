@@ -108,7 +108,7 @@ def get_restTime(url, episode):
     except:
         return "Error 46: Fallo al obtener el tiempo restante."
 
-def search_Anime(name,link): # Cambiar estructura
+def search_Anime(name,link):
     try:
         soup = request(link)
         anime_names = soup.select("div.image-title")
@@ -116,12 +116,7 @@ def search_Anime(name,link): # Cambiar estructura
         for names in anime_names:
             if name.lower() in names.text.lower():  
                 list_of_animes.append(names.text)
-        if list_of_animes:
-            resultados_numerados = enumerate(list_of_animes, start=1)
-            resultados_format = [f"{num}. {anime}" for num, anime in resultados_numerados]
-            return "\n".join(resultados_format)
-        else:
-            return f"No se encontro ningun anime con el nombre: {name}"
+        return list_of_animes
     except Exception:
         return f"Hubo un error: {Exception}"
 
@@ -135,11 +130,12 @@ def send_notification(title, message):
     notification.send()
 
 
-inputAnime = input("What anime is going to be notifiyed? \n") # Anime to search
-url_base = "https://notify.moe/explore" # web page
-Listname = get_ListName(url_base) # Obtain the naime list
-search = search_Anime(inputAnime,url_base)
-print(search)
+# inputAnime = input("What anime is going to be notifiyed? \n") # Anime to search
+# url_base = "https://notify.moe/explore" # web page
+# Listname = get_ListName(url_base) # Obtain the naime list
+# search = search_Anime(inputAnime,url_base)
+# print(search)
+
 # position = get_Posicion(Listname,inputAnime) # We shearch for the position of the anime
 # print(position)
 # links = get_AnimeLink(url_base,position) # We obtain the anime link (/anime/id)

@@ -18,16 +18,27 @@
             <img  width="200" height="200" src="..\static\imgs\logo_lepravda_complete.svg" alt=""/></a>
         </div>
     </nav>   
-
+<!-- Anime Notify  -->
     <section class="bg-imagen-ad p-l0 md-p-l5">
         <article class="fw-600 white fs-m3 mt-3">
-            <form action="/" method="POST"
-                <p> Anime para Notificar: <input name="values" value="{{ name_anime }}"></p>
-                <p>{{ result }}</p>
+            <form action="/" method="POST">
+                <h1> Anime Notify</h1>
+                <input name="anime_input" placeholder="ej. Spy x Family">
+                <button type="submit">Buscar</button>
+                <ul>
+                    {% for anime in busquedas %}
+                    {% set index = loop.index0 %}
+                    {% if index < links_animes|length %}
+                        <li><a target="_blank" rel="noopener noreferrer" href="{{ links_animes[index] }}">{{ anime }}</a></li>
+                    {% endif %}
+                    {% endfor %}
+                    </ul>
             </form>
         </article>
     </section>
+    <!-- Anime Notify  -->
 </section>
+
 <footer class="p-5 md-p-l5 bg-indigo-lightest-10">
     <div class="white opacity-70 fs-s2 mt-4 md-pr-10">
         <p>¿Qué es LePravda?</p>
@@ -35,18 +46,18 @@
     <div class="flex justify-around ">
         <div class="md-w-25pc mb-10">
             <div class="white opacity-70 fs-s2 mt-4 md-pr-10">
-                <p>LePravda es un marca gestora de pequeños proyecto relacionados
-                    a la  creacion de servidores, servicios o
-                    comunidades en el ambito de los videojuegos.</p>
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed euismod congue 
+                    enim et rutrum. Etiam tincidunt velit sed erat laoreet tristique. Donec at 
+                    consequat nulla.</p>
             </div>
         </div>
         <div class="w-100pc md-w-50pc">
             <div class="flex justify-around">
                 <div class="w-33pc md-px-10 mb-10">
-                    <h5 class="white">LePravda</h5>
+                    <h5 class="white">Links</h5>
                     <ul class="list-none mt-5 fs-s2">
                         <li class="my-3"><a href="#" class="white opacity-70 no-underline hover-underline">Sobre
-                                Nosotros</a></li>
+                                LePravda</a></li>
                         <li class="my-3"><a href="#" class="white opacity-70 no-underline hover-underline">Soporte</a>
                         </li>
                         <li class="my-3"><a href="#" class="white opacity-70 no-underline hover-underline">Aviso Legal</a>
@@ -83,7 +94,7 @@
     </div>
     <small class="block white opacity-40 fs-s3 mt-3 text-center" id="year"></small>
 </footer>
-<script src="../static/js/yearAutomatic.js" <script=""></script>
+<script src="../static/js/addons.js"></script>
 <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
 <script src="https://unpkg.com/feather-icons"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick.min.js"></script>
