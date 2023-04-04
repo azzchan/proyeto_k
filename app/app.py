@@ -1,4 +1,4 @@
-from flask import Flask, request, render_template, session, make_response
+from flask import Flask, request, render_template, session, make_response, redirect
 from flask_socketio import SocketIO
 from main import get_ListName, get_Posicion, get_AnimeLink, get_Name
 from main import get_Episode, get_state_episode, get_restTime, search_Anime
@@ -41,26 +41,20 @@ def obtener_link(busquedas):
 
 @app.route('/', methods=['GET', 'POST'])
 def index():
-    # try:
+    busquedas = ""
+    link_anime = ""
+    show_results = False
     if request.method == 'POST':
-        anime_name = request.form.getlist('anime_input')
-        inputAnime = anime_name[0]
-        # respuesta = gestion(inputAnime)
-        busquedas = obtener_busqueda(inputAnime)
-        link_anime = obtener_link(busquedas)
-        # for i in busquedas:
-        #     link_anime = obtener_link(i.splitlines())
-    else:
-        # respuesta = ""
-        busquedas = ""
-    return render_template('index.html', busquedas=busquedas, links_animes=link_anime)
-    # except:
-    #     return "Error interno"
-    # finally:
-    #     session.clear()
-        # response = make_response(render_template('index.html', result=respuesta))
-        # response.set_cookie('session', '', expires=1), 
-        # return response
+        if 'clean_results' in request.form:
+            busquedas = ""
+            link_anime = ""
+        else:
+            anime_name = request.form.getlist('anime_input')
+            inputAnime = anime_name[0]
+            busquedas = obtener_busqueda(inputAnime)
+            link_anime = obtener_link(busquedas)
+            show_results = True
+    return render_template('index.html', show_results=show_results, busquedas=busquedas, links_animes=link_anime)
 
 if __name__ == '__main__':
     app.run(debug=True, port=800)
